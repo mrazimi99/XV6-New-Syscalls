@@ -1,6 +1,14 @@
 {
 	"files.associations": {
 		"mmu.h": "c",
-		"proc.h": "c"
+		"proc.h": "c",
+		"typeinfo": "c",
+		"defs.h": "c",
+		"x86.h": "c",
+		"elf.h": "c",
+		"user.h": "c",
+		"types.h": "c",
+		"stat.h": "c",
+		"string_view": "c"
 	}
 }

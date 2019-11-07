@@ -24,6 +24,9 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 
+// add environment variable PATH
+int set_path(char *buffer);
+
 // ulib.c
 int stat(const char*, struct stat*);
 char* strcpy(char*, const char*);
