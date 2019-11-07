@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "stat.h"
 
 int
 sys_fork(void)
@@ -88,4 +89,18 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int sys_count_num_of_digits(void)
+{
+	struct proc* proceess_current = myproc();
+	int num = proceess_current->tf->edx;
+
+	int result = 1;
+	while(num /= 10)
+		++result;
+
+	cprintf("Num of digits are : %d\n", result);
+	
+	return 1;
 }
