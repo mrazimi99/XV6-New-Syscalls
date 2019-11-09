@@ -11,6 +11,7 @@
 		"stat.h": "c",
 		"string_view": "c",
 		"spinlock.h": "c",
-		"date.h": "c"
+		"date.h": "c",
+		"param.h": "c"
 	}
 }

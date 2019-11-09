@@ -33,3 +33,5 @@ SYSCALL(count_num_of_digits)
 
 SYSCALL(set_path)
 SYSCALL(set_sleep)
+SYSCALL(get_parent_id)
+SYSCALL(get_children)

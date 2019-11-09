@@ -184,6 +184,7 @@ UPROGS=\
 	_test_count_num\
 	_set\
 	_test_proc_sleep\
+	_test_proc_id_stuff\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

@@ -127,3 +127,26 @@ int sys_set_sleep(void)
   cprintf("Differnce time is : %d\n", now.second - past.second);
   return 0;
 }
+
+int sys_get_parent_id(void)
+{
+	struct proc* cur = myproc();
+	return cur->parent->pid;
+}
+
+int sys_get_children(void)
+{
+	int pid;
+	if(argint(0, &pid) < 0)
+    	return -1;
+	
+	int* children = get_children(pid);
+	int i = 0;
+
+	while (children[i])
+	{
+		cprintf("%d", children[i++]);
+	}
+	cprintf("\n");
+	return 1;
+}

@@ -533,38 +533,22 @@ procdump(void)
   }
 }
 
-void set_sleep_syscall(void *chan, struct spinlock *lk)
+int* get_children(int pid)
 {
-  struct proc *p = myproc();
+	acquire(&ptable.lock);
+	static int children[NPROC] = {0};
+	int j = 0;
 
-  sti();
-  
-  if(p == 0)
-    panic("sleep");
+	for (int i = 0; i < NPROC; i++)
+	{
+		if(ptable.proc[i].parent->pid == pid)
+		{
+			children[j] = ptable.proc[i].pid;
+			++j;
+		}
+	}
 
-  if(lk == 0)
-    panic("sleep without lk");
-
-  // Must acquire ptable.lock in order to
-  // change p->state and then call sched.
-  // Once we hold ptable.lock, we can be
-  // guaranteed that we won't miss any wakeup
-  // (wakeup runs with ptable.lock locked),
-  // so it's okay to release lk.
-  if(lk != &ptable.lock){  //DOC: sleeplock0
-    acquire(&ptable.lock);  //DOC: sleeplock1
-    release(lk);
-  }
-  // Go to sleep.
-  p->chan = chan;
-  p->state = SLEEPING;
-
-  // Tidy up.
-  p->chan = 0;
-
-  // Reacquire original lock.
-  if(lk != &ptable.lock){  //DOC: sleeplock2
-    release(&ptable.lock);
-    acquire(lk);
-  }
+	// children[j] = 0;
+	release(&ptable.lock);
+	return children;
 }
