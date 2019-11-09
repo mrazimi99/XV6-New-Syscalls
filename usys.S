@@ -32,3 +32,4 @@ SYSCALL(uptime)
 SYSCALL(count_num_of_digits)
 
 SYSCALL(set_path)
+SYSCALL(set_sleep)

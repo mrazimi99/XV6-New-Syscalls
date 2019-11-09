@@ -65,6 +65,7 @@ sys_sleep(void)
 
   if(argint(0, &n) < 0)
     return -1;
+
   acquire(&tickslock);
   ticks0 = ticks;
   while(ticks - ticks0 < n){
@@ -103,4 +104,26 @@ int sys_count_num_of_digits(void)
 	cprintf("Num of digits are : %d\n", result);
 	
 	return 1;
+}
+
+int sys_set_sleep(void)
+{
+  int time_secs;
+  uint ticks_;
+
+  struct rtcdate past, now;
+  cmostime(&past);
+
+  ticks_ = ticks;
+
+  if(argint(0, &time_secs) < 0)
+    return -1;
+
+  while(ticks - ticks_ < time_secs)
+  {
+	sti();
+  }
+  cmostime(&now);
+  cprintf("Differnce time is : %d\n", now.second - past.second);
+  return 0;
 }

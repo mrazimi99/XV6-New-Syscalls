@@ -27,6 +27,8 @@ int uptime(void);
 // add environment variable PATH
 int set_path(char *buffer);
 
+void set_sleep(int secs);
+
 // ulib.c
 int stat(const char*, struct stat*);
 char* strcpy(char*, const char*);

@@ -183,6 +183,7 @@ UPROGS=\
 	_zombie\
 	_test_count_num\
 	_set\
+	_test_proc_sleep\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

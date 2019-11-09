@@ -188,3 +188,7 @@ void            clearpteu(pde_t *pgdir, char *uva);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+
+// set sleep syscall
+void set_sleep_syscall(void *chan, struct spinlock *lk);
+void set_sleep(int sec);
