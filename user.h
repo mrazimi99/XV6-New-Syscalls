@@ -29,7 +29,8 @@ int set_path(char *buffer);
 
 void set_sleep(int);
 int get_parent_id(void);
-char* get_children(int);
+int* get_children(int);
+int* get_grandchild(int);
 
 // ulib.c
 int stat(const char*, struct stat*);

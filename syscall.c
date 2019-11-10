@@ -108,6 +108,7 @@ extern int sys_set_path(void);
 extern int sys_set_sleep(void);
 extern int sys_get_parent_id(void);
 extern int sys_get_children(void);
+extern int sys_get_grandchild(void);
 
 
 
@@ -139,6 +140,7 @@ static int (*syscalls[])(void) = {
 [SYS_set_sleep]   sys_set_sleep,
 [SYS_get_parent_id]   sys_get_parent_id,
 [SYS_get_children]   sys_get_children,
+[SYS_get_grandchild]   sys_get_grandchild,
 };
 
 void

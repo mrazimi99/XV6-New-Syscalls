@@ -122,6 +122,7 @@ void            wakeup(void*);
 void            yield(void);
 int				get_parent_id(void);
 int*			get_children(int);
+int*			get_grandchild(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

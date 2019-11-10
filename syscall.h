@@ -25,3 +25,4 @@
 #define SYS_set_sleep 24
 #define SYS_get_parent_id 25
 #define SYS_get_children 26
+#define SYS_get_grandchild 27

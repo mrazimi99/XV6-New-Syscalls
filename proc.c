@@ -536,7 +536,12 @@ procdump(void)
 int* get_children(int pid)
 {
 	acquire(&ptable.lock);
-	static int children[NPROC] = {0};
+	static int children[NPROC];
+	for (int i = 0; i < NPROC; i++)
+	{
+		children[i] = 0;
+	}
+	
 	int j = 0;
 
 	for (int i = 0; i < NPROC; i++)
@@ -548,7 +553,31 @@ int* get_children(int pid)
 		}
 	}
 
-	// children[j] = 0;
 	release(&ptable.lock);
 	return children;
+}
+
+int* get_grandchild(int pid)
+{
+	static int queue[NPROC];
+  for (int i = 0; i < NPROC; i++)
+	{
+		queue[i] = 0;
+	}
+
+	int* grandchild = 0;
+	queue[0] = pid;
+	int i = 0, read = 0;
+
+	while (queue[read])
+	{
+		grandchild = get_children(queue[read]);
+
+		for (int j = 0; grandchild[j] > 0; ++j)
+			queue[++i] = grandchild[j];
+
+		++read;
+	}
+
+	return queue;
 }
